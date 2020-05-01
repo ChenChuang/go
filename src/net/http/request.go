@@ -542,7 +542,7 @@ func (r *Request) write(w io.Writer, usingProxy bool, extraHeaders Header, waitF
 
 	ruri := r.URL.RequestURI()
 	if usingProxy && r.URL.Scheme != "" && r.URL.Opaque == "" {
-		ruri = r.URL.Scheme + "://" + host + ruri
+		ruri = r.URL.Scheme + "://" + r.URL.Host + ruri
 	} else if r.Method == "CONNECT" && r.URL.Path == "" {
 		// CONNECT requests normally give just the host and port, not a full URL.
 		ruri = host
